@@ -1,0 +1,27 @@
+{
+  "location": {
+    "latitude": 0.0,
+    "longitude": 0.0,
+    "altitude": 0.0,
+    "accuracy": 0.0,
+    "vertical_accuracy": 0.0,
+    "bearing": 0.0,
+    "speed": 0.0,
+    "elapsedMs": 0,
+    "provider": "gps"
+  },
+  "battry": {
+    "present": true,
+    "technology": "Li-poly",
+    "health": "GOOD",
+    "plugged": "UNPLUGGED",
+    "status": "DISCHARGING",
+    "temperature": 37.0,
+    "voltage": 3761,
+    "current": 602722,
+    "percentage": 57,
+    "level": 57,
+    "scale": 100,
+    "charge_counter": 1254960
+  }
+}

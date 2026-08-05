@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+ENV/
+*.egg-info/
+.eggs/
+build/
+dist/
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Data
+*.db
+*.sqlite
+*.sqlite3
