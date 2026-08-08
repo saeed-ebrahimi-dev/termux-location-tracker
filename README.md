@@ -1,43 +1,16 @@
-# 📍 Termux Location Tracker
+# Termux Location Tracker
 
-Track your Android device's location and battery status in real-time on a live map.
+Track your Android device's location & battery status live on a map.
+
+A lightweight **FastAPI** server + **Termux** script that sends your Android device's GPS location and battery status to a live **Leaflet** map — for tracking any device running Termux.
+
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![FastAPI](https://img.shields.io/badge/FastAPI-✓-green.svg)
-![License](https://img.shields.io/badge/License-MIT-yellow.svg)
-
-A lightweight **FastAPI** server + **Termux** script that sends your Android device's GPS location and battery status to a live **Leaflet** map — perfect for tracking a phone, a car, or any device running Termux.
 
 ---
 
-## ✨ Features
-
-- 🗺️ **Live map** with GPS accuracy circle and movement trail (last 100 points)
-- 🔋 **Battery status** — percentage, health, temperature, voltage, and more
-- 🧭 **Google Maps navigation** link with exact coordinates
-- 📊 **Coordinates card** — latitude, longitude, altitude, speed, bearing
-- 📱 **Fully responsive** — works on desktop, tablet, and mobile
-- 🔄 **Auto-refresh** every 2 seconds (polling)
-- ⏱️ **Last device data time** — shows when the device actually sent data
-- 🛡️ **Never-stop Termux script** — survives errors and network drops
-
----
-
-## 📁 Project Structure
-
-```
-├── main.py                    # FastAPI server
-├── requirements.txt           # Python dependencies
-├── templates/
-│   └── map.html               # Live map page (Leaflet)
-├── termux-script/
-│   └── send_location.sh       # Termux script (Android device)
-└── example_data.json          # Sample data for testing
-```
-
----
-
-## 🖥️ Server Setup
+## Server Setup
 
 ### 1. Install dependencies
 
@@ -59,7 +32,7 @@ The server runs on `http://0.0.0.0:9000`.
 
 ---
 
-## 📱 Android Device Setup (Termux)
+## Android Device Setup (Termux)
 
 ### 1. Install Termux and prerequisites
 
@@ -80,19 +53,14 @@ bash termux-script/send_location.sh http://YOUR_SERVER_IP:9000 5
 ```
 
 **Arguments:**
-| Argument | Description | Default |
-|----------|-------------|---------|
-| `1` | Server URL | `http://YOUR_SERVER_IP:9000` |
-| `2` | Send interval (seconds) | `5` |
-
-The script:
-- 🔒 Acquires a **wake lock** so Android won't kill it
-- 🔄 **Never stops** — retries forever on any error
-- 📡 Sends GPS location + battery status every N seconds
+| Argument | Description |
+|----------|-------------|
+| `1` | Server URL |
+| `2` | Send interval (seconds) |
 
 ---
 
-## 🔌 API Endpoints
+## API Endpoints
 
 | Method | Path | Description |
 |--------|------|-------------|
@@ -110,28 +78,18 @@ curl -X POST http://localhost:9000/location \
 
 ---
 
-## 🗺️ Map Page Features
+## Features
 
-- 🎯 Target marker with GPS accuracy circle
-- 🔋 Battery indicator at the top (percentage, status, temperature)
-- 🧭 Google Maps navigation link (with exact coordinates)
-- 📍 Direct Google Maps view link
-- 📊 Coordinates info card (latitude, longitude, altitude, speed, bearing)
-- 🛤️ Movement trail (last 100 points)
-- 📱 Fully responsive (desktop, tablet, mobile)
-- 🔄 Auto-refresh every 2 seconds (polling)
-- ⏱️ Last device data time
+- **Live map** with GPS accuracy circle and movement trail (last 100 points)
+- **Battery status** — percentage, charging state, and temperature
+- **Last device data time** — shows when the device actually sent data
+- **Coordinates card** — latitude, longitude, altitude, speed, bearing
+- **Fully responsive** — works on desktop, tablet, and mobile
+- **Google Maps navigation & view** links with exact coordinates
 
 ---
 
-## 🛠️ Tech Stack
+## Demo
 
-- **Backend:** [FastAPI](https://fastapi.tiangolo.com/) + [Uvicorn](https://www.uvicorn.org/)
-- **Frontend:** [Leaflet](https://leafletjs.com/) + [OpenStreetMap](https://www.openstreetmap.org/)
-- **Device:** [Termux](https://termux.dev/) + `termux-api`
+<img src="assets/demo.gif" alt="Demo — live tracking of an Android device on the map">
 
----
-
-## 📄 License
-
-MIT License — feel free to use, modify, and share.
