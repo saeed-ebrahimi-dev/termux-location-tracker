@@ -1,0 +1,329 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    background: #1a1a2e;
+    color: #fff;
+}
+#batteryBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(135deg, #16213e, #0f3460);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.battery-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.battery-icon {
+    width: 44px;
+    height: 24px;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+}
+.battery-icon::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 6px;
+    width: 4px;
+    height: 8px;
+    background: #fff;
+    border-radius: 0 2px 2px 0;
+}
+.battery-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: #4caf50;
+    transition: width 0.5s ease, background 0.5s ease;
+    min-width: 2px;
+}
+.battery-fill.low {
+    background: #f44336;
+}
+.battery-fill.medium {
+    background: #ff9800;
+}
+#batteryPercent {
+    font-size: 20px;
+    font-weight: bold;
+}
+#batteryStatus {
+    font-size: 13px;
+    color: #aaa;
+}
+#lastUpdate {
+    font-size: 12px;
+    color: #8ab4f8;
+}
+#map {
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+}
+#infoCard {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: rgba(22, 33, 62, 0.95);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    max-width: 320px;
+    font-size: 14px;
+    line-height: 1.8;
+}
+#infoCard h3 {
+    margin-bottom: 8px;
+    color: #8ab4f8;
+    font-size: 16px;
+}
+#infoCard .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+#infoCard .label {
+    color: #aaa;
+}
+#infoCard .value {
+    font-weight: 600;
+    color: #fff;
+    direction: ltr;
+}
+#googleMapsBtn {
+    display: inline-block;
+    margin-top: 12px;
+    background: #4285F4;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.3s;
+    width: 100%;
+    text-align: center;
+}
+#googleMapsBtn:hover {
+    background: #3367d6;
+}
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+}
+.gmap-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    background: #4285F4;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.3s, transform 0.15s;
+    border: none;
+    cursor: pointer;
+}
+.gmap-btn:hover {
+    background: #3367d6;
+}
+.gmap-btn:active {
+    transform: scale(0.98);
+}
+.gmap-btn.secondary {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.gmap-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+#statusOverlay {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffd54f;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    display: none;
+    border: 1px solid rgba(255, 213, 79, 0.4);
+}
+.attr {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 4px;
+}
+/* Adjustments for tablets */
+@media (max-width: 900px) {
+    #infoCard {
+        width: 260px;
+        bottom: 12px;
+        left: 12px;
+        padding: 12px 14px;
+        border-radius: 12px;
+    }
+    #infoCard h3 { font-size: 14px; }
+    .info-row .label { font-size: 11px; }
+    .info-row .value { font-size: 12px; }
+    .gmap-btn { padding: 10px 14px; font-size: 13px; }
+    #batteryBar { padding: 8px 14px; }
+}
+
+/* Adjustments for mobile phones */
+@media (max-width: 600px) {
+    #batteryBar {
+        padding: 8px 12px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        min-height: auto;
+    }
+    .battery-section {
+        justify-content: space-between;
+        width: 100%;
+    }
+    #batteryPercent { font-size: 17px; }
+    #batteryStatus { max-width: 160px; font-size: 11px; }
+    #lastUpdate { font-size: 11px; }
+    #statusOverlay {
+        top: auto;
+        bottom: 12px;
+        right: 12px;
+        left: 12px;
+        text-align: center;
+    }
+    #infoCard {
+        inset: auto 8px 8px 8px;
+        width: auto;
+        max-width: none;
+        max-height: 45vh;
+        border-radius: 14px;
+        padding: 12px 14px;
+        padding-bottom: calc(12px + env(safe-area-inset-bottom));
+        box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.5);
+        overflow-y: auto;
+    }
+    .info-row .label { font-size: 11px; }
+    .info-row .value { font-size: 12px; }
+    .gmap-btn { padding: 12px; font-size: 13px; border-radius: 10px; }
+}
+
+/* Adjustments for very small phones */
+@media (max-width: 380px) {
+    .info-row { flex-direction: column; align-items: flex-start; gap: 2px; }
+    .info-row .value { width: 100%; }
+}
+
+/* Respect the notched display on iPhones */
+@supports (padding: max(0px)) {
+    #batteryBar {
+        padding-top: max(10px, env(safe-area-inset-top));
+    }
+}
+
+/* Pulsing blue dot marker used for the target */
+.tracker-target {
+    position: relative;
+    width: 44px;
+    height: 44px;
+}
+.tt-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 44px;
+    height: 44px;
+    border: 2px solid #4285F4;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: tt-pulse 2s ease-out infinite;
+}
+.tt-ring:nth-child(2) {
+    animation-delay: 0.7s;
+}
+.tt-ring:nth-child(3) {
+    animation-delay: 1.4s;
+}
+.tt-dot {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 14px;
+    height: 14px;
+    background: #4285F4;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(66, 133, 244, 0.6);
+}
+@keyframes tt-pulse {
+    0% { transform: scale(0.4); opacity: 0.8; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+.tracker-target-icon {
+    background: transparent;
+    border: none;
+}
+/* Floating action button that toggles the info card on mobile */
+#menuFab {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1002;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #4285F4;
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+@media (max-width: 600px) {
+    #menuFab {
+        display: block;
+    }
+    #infoCard {
+        display: none;
+        inset: auto 8px 80px 8px !important;
+        max-height: 55vh;
+    }
+    #infoCard.open {
+        display: block;
+    }
+}
+/* Rounded styling for Leaflet popups */
+.leaflet-popup-content-wrapper {
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
