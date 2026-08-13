@@ -131,6 +131,32 @@ function showStatus(msg, show = true) {
     }
 }
 
+// Recenter the map on the target marker
+function recenterMap() {
+    if (targetMarker) {
+        const latLng = targetMarker.getLatLng();
+        map.setView(latLng, Math.max(map.getZoom(), 16));
+        showStatus('🎯 Centered on target');
+    } else {
+        showStatus('⏳ No target location yet');
+    }
+    // Close the info card menu on mobile after using the button
+    const card = document.getElementById('infoCard');
+    if (card.classList.contains('open')) {
+        card.classList.remove('open');
+        document.getElementById('menuFab').textContent = '📍';
+    }
+}
+
+// Keyboard shortcut: R = recenter on target
+document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key.toLowerCase() === 'r') recenterMap();
+});
+
+// Wire up the recenter button
+document.getElementById('recenterBtn').addEventListener('click', recenterMap);
+
 let pollTimer = null;
 let lastDataHash = '';
 let isFirstLoad = true;
